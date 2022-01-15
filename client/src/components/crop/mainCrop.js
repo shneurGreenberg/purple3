@@ -1,7 +1,6 @@
 import "./App.css";
 import { useState } from "react";
 import ImageCropDialog from "./ImageCrop";
-// import image from "./image.jpeg";
 
 export function MainCrop(props) {
   const initData = [

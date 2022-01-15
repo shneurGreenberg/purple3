@@ -3,31 +3,29 @@ import { Page, Card } from "@shopify/polaris";
 import { DropZoneFn } from "./DropZone";
 import { TextFieldFn } from "./TextField";
 import { TopBarExample } from "./TopBar";
-import { MainCrop } from "../components/crop/mainCrop";
+import { MainCrop } from "./crop/mainCrop";
 import { PhoneFieldFn } from "./phone";
 // import { prefixExample } from "./select";
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 import { setUser } from "../features/user";
-import { setUseFunc } from "../api/api";
 
 export function EditPage() {
   // const user = useSelector((state) => state.user.value);
   const [postUser, setPostUser] = useState({
     name: "",
     title: "",
-    description: "",
+    describYorself: "",
     currentCompany: "",
-    describYorself: "Foo",
     phoneNumber: "",
-    image: "ddd",
+    image: "",
   });
   const [imageCrop, setImage] = useState("");
 
   const dispatch = useDispatch();
 
   const saveUser = async () => {
-    await setUseFunc(postUser);
+    console.log("postUser");
 
     dispatch(
       setUser({
@@ -41,40 +39,17 @@ export function EditPage() {
       })
     );
   };
+
   const onDropImg = (value) => {
-    alert(value);
     setImage(value);
   };
 
-  const onChangeName = (value) => {
-    setPostUser((prevState, newState) => ({
-      ...prevState,
-      name: value,
-    }));
-  };
-  const onChangeTitle = (value) => {
-    setPostUser((prevState, newState) => ({
-      ...prevState,
-      title: value,
-    }));
-  };
+  const onChangeProperty = (value, fieldName) => {
+    console.log(value, fieldName);
 
-  const onChangeDescription = (value) => {
     setPostUser((prevState, newState) => ({
       ...prevState,
-      description: value,
-    }));
-  };
-  const onChangeCurrentCompany = (value) => {
-    setPostUser((prevState, newState) => ({
-      ...prevState,
-      currentCompany: value,
-    }));
-  };
-  const onChangePhoneNumber = (value) => {
-    setPostUser((prevState, newState) => ({
-      ...prevState,
-      phoneNumber: value,
+      [fieldName]: value,
     }));
   };
 
@@ -101,33 +76,32 @@ export function EditPage() {
             </Card>
 
             <TextFieldFn
-              value={postUser.name}
-              onChangeValue={onChangeName}
+              value={postUser.title}
+              onChangeValue={(value) => onChangeProperty(value, "title")}
               title="Job title"
             />
 
             <TextFieldFn
-              value={postUser.title}
-              onChangeValue={onChangeTitle}
-              title="Job title"
-            />
-            <TextFieldFn
               value={postUser.currentCompany}
-              onChangeValue={onChangeCurrentCompany}
+              onChangeValue={(value) =>
+                onChangeProperty(value, "currentCompany")
+              }
               title="Current company"
             />
             <TextFieldFn
-              value={postUser.description}
-              onChangeValue={onChangeDescription}
+              value={postUser.describYorself}
+              onChangeValue={(value) =>
+                onChangeProperty(value, "describYorself")
+              }
               title="describYorself"
               multiline={4}
             />
             <PhoneFieldFn
               value={postUser.phoneNumber}
-              onChangeValue={onChangePhoneNumber}
+              onChangeValue={(value) => onChangeProperty(value, "phoneNumber")}
               title={"Phone number"}
             />
-            {/* {JSON.stringify(postUser)} */}
+
           </Card>
         </Card>
       </Page>

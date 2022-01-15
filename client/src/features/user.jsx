@@ -18,12 +18,15 @@ export const userSlices = createSlice({
   },
   reducers: {
     setUser: (state, action) => {
-      debugger;
+      // debugger;
+      console.log(action);
+
       state.value = action.payload;
+      console.log(state.value);
     },
-    deleteUser: (state) => {
-      state.value = {};
-    },
+    // deleteUser: (state) => {
+    //   state.value = {};
+    // },
   },
 });
 

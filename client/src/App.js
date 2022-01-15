@@ -2,7 +2,7 @@
 import "@shopify/polaris/build/esm/styles.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { HomeMajor } from "@shopify/polaris-icons";
-import { EditPage } from "./components/ViewPage";
+import { EditPage } from "./components/editPage";
 
 import {
   Page,
@@ -51,7 +51,7 @@ function App() {
                   items={[
                     {
                       url: "/about",
-                      label: "Home",
+                      label: "Create User",
                       icon: HomeMajor,
                     },
                   ]}
@@ -94,7 +94,7 @@ function App() {
                 />
               </Card>
             </Card.Section>
-            {JSON.stringify(user)}
+            {/* {JSON.stringify(user)} */}
             <Card sectioned title={"User profile"}>
               <Card sectioned subdued>
                 <TextFieldFn title="Job title" value={user.title} />
