@@ -35,7 +35,7 @@ export function EditPage() {
         title: postUser.title,
         description: postUser.description,
         currentCompany: postUser.currentCompany,
-        describYorself: "Foo",
+        describYorself: postUser.describYorself,
         phoneNumber: postUser.phoneNumber,
         image: "ddd",
       })
@@ -127,7 +127,7 @@ export function EditPage() {
               onChangeValue={onChangePhoneNumber}
               title={"Phone number"}
             />
-            {JSON.stringify(postUser)}
+            {/* {JSON.stringify(postUser)} */}
           </Card>
         </Card>
       </Page>
